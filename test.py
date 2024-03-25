@@ -8,7 +8,10 @@ window = sg.Window('ボタンにイベントを追加', layout, size=(300, 100))
 
 while True:
     event, value = window.read()  # イベントの入力を待つ
-    print(aaa)
+    print('a')
+    print('b')
+    print('c')
+    print('テストブランチ作成')
 
     if event == '-BTN-':
         sg.popup('ボタンが押されました')
