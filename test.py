@@ -13,6 +13,7 @@ while True:
     print('c')
     print('テストブランチ作成')
     print('2回目のコミット')
+    print('Aブランチの変更')
 
     if event == '-BTN-':
         sg.popup('ボタンが押されました')
