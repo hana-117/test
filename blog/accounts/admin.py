@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import CustomUser, Connection
+from .models import CustomUser#, Connection
 from .forms import MyUserChangeForm, MyUserCreationForm
 
 class MyUserAdmin(UserAdmin):
@@ -37,6 +37,8 @@ class MyUserAdmin(UserAdmin):
   
 admin.site.register(CustomUser, MyUserAdmin)
 
+'''
 @admin.register(Connection)
 class ConnectionAdmin(admin.ModelAdmin):
     pass
+'''
