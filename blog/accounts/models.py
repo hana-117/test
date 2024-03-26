@@ -46,10 +46,11 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
         
-        
+'''
 class Connection(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='connection')
     following = models.ManyToManyField(CustomUser, related_name='following', symmetrical=False, blank=True)
     
     def __str__(self):
         return self.user.nickname
+'''

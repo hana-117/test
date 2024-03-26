@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView # 追加
 from django.views.generic import ListView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin # 追加
-from .models import CustomUser, Connection
+from .models import CustomUser #Connection
 from .forms import ProfileForm  # 追加
 
 
