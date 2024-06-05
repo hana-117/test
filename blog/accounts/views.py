@@ -5,7 +5,7 @@ from django.views.generic.edit import UpdateView # 追加
 from django.views.generic import ListView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin # 追加
-from .models import CustomUser #Connection
+from .models import CustomUser, Connection
 from .forms import ProfileForm  # 追加
 
 
@@ -21,6 +21,8 @@ class ProfileEditView(LoginRequiredMixin, UpdateView):
     def get_object(self):
         return self.request.user
     
+  
+  #ここから下
     
 class FollowBase(LoginRequiredMixin, View):
     """フォローのベース。リダイレクト先を以降で継承先で設定"""
@@ -31,17 +33,20 @@ class FollowBase(LoginRequiredMixin, View):
         my_connection = Connection.objects.get_or_create(user=self.request.user)
 
         if target_user in my_connection[0].following.all():
-            obj = connection[0].following.remove(target_user)
+            obj = my_connection[0].following.remove(target_user)
         else:
             obj = my_connection[0].following.add(target_user)
         return obj
 
 
 class FollowList(FollowBase):
-    """HOMEページでフォローした場合"""
+    """AllUserページでフォローした場合"""
     def get(self, request, *args, **kwargs):
         super().get(request, *args, **kwargs)
+        
         return redirect('accountlist')
+    
+    #ここまで
     
   
 class AccountListView(LoginRequiredMixin, ListView):

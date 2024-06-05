@@ -42,9 +42,9 @@
                                        <h6>{{ item.nickname }}</h6></td>
                                    <td class="text-center align-middle" style="width: 20%">
                                     {% if item.user in connection.0.following.all %}
-                                        <a href="#" class="btn btn-danger ms-3" tabindex="-1" role="button" aria-disabled="true">フォロー解除</a>
+                                        <a href="{% url 'accounts:followlist' item.id %}" class="btn btn-danger ms-3" tabindex="-1" role="button" aria-disabled="true">フォロー解除</a>
                                     {% else %}
-                                        <a href="#" class="btn btn-primary ms-3" tabindex="-1" role="button" aria-disabled="true">フォロー</a>
+                                        <a href="{% url 'accounts:followlist' item.id %}" class="btn btn-primary ms-3" tabindex="-1" role="button" aria-disabled="true">フォロー</a>
                                     {% endif %}
                                    </td>                                  
                                </tr>

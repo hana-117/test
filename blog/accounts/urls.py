@@ -7,5 +7,5 @@ urlpatterns = [
    path('home/', HomeView.as_view(), name='home'),
    path('edit_profile/', ProfileEditView.as_view(), name='edit_profile'), # 追加
    path('accountlist/', AccountListView.as_view(), name='accountlist'),
-   path('followlist/', FollowList.as_view(), name='followlist'),
+   path('followlist/<int:pk>', FollowList.as_view(), name='followlist'),
 ]

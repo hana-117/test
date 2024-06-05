@@ -27,7 +27,11 @@
                                    <td class="text" style="width: 80%">
                                        <h6>{{ item.owner.nickname }}@{{ item.created_at}}</h6>{{ item.content }}</td>
                                    <td class="text-center align-middle" style="width: 20%">
-                                      ・・・省略・・・
+                                    {% if request.user in item.like.all %}
+                                    <a href="{% url 'post:likelist' item.pk %}" class="like-btn add-color" tabindex="-1" role="button" aria-disabled="true"><i class="fas fa-heart"></i></a>{{item.like.count}}
+                                    {% else %}
+                                    <a href="{% url 'post:likelist' item.pk %}" class="like-btn" tabindex="-1" role="button" aria-disabled="true"><i class="far fa-heart"></i></a>{{item.like.count}}
+                                    {% endif %}
                                    </td>                                  
                                </tr>
                            {% endfor %}

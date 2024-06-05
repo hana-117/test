@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import ListView, DeleteView
 from django.contrib.auth import get_user_model
@@ -89,3 +90,23 @@ class OtherPostsView(ListView):
         other_user = get_object_or_404(get_user_model(), nickname=nickname)
         user_posts = Post.objects.filter(owner=other_user)
         return render(request, self.template_name, {'other_user': other_user, 'user_posts': user_posts})
+
+
+class LikeBase(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        pk = self.kwargs['pk']
+        related_post = Post.objects.get(pk=pk)
+        
+        if self.request.user in related_post.like.all():
+            obj = related_post.like.remove(self.request.user)
+        else:
+            obj = related_post.like.add(self.request.user)
+            
+        return obj
+    
+    
+class Likelist(LikeBase):
+    def get(self, request, *args, **kwargs):
+        super().get(request, *args, **kwargs)
+        
+        return redirect('post:postlist')
